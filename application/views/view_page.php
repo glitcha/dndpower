@@ -24,7 +24,7 @@
 		
 	</body>
 	<script>
-		$('ul').children('li').bind('touchstart mousedown', function(e) {
+		$('ul').children('li').bind('click', function(e) {
 
 			var power_id = $(this).attr('data-name');
 			

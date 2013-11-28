@@ -9,13 +9,15 @@
 	</head>
 	<body>
 		<div data-role="page" data-theme="a" id="home">
-			<ul id="listview" data-role="listview" data-filter="true">
-				<?php foreach ($powers as $power) : ?>
-				<li data-name="<?php echo $power->id; ?>">
-					<a href="#" ><?php echo $power->super_type; ?> - <?php echo $power->level; ?> - <?php echo $power->name; ?></a>
-				</li>
-				<?php endforeach; ?>
-			</ul>
+			<div data-role="content">
+				<ul id="listview" data-role="listview" data-filter="true">
+					<?php foreach ($powers as $power) : ?>
+					<li data-name="<?php echo $power->id; ?>">
+						<a href="#" ><?php echo $power->super_type; ?> - <?php echo $power->level; ?> - <?php echo $power->name; ?></a>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
 		</div>
 		
 		<div data-role="page" data-theme="a" id="power">

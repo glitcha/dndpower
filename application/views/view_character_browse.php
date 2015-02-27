@@ -25,6 +25,8 @@
 					<td><?php echo $character->class;?></td>
 					<td>
 						<a href="/character/edit/<?php echo $character->id; ?>" class="btn btn-primary">Edit</a>
+						<a href="/character/powers/<?php echo $character->id; ?>" class="btn btn-primary">Powers</a>
+						<a href="/character/view/<?php echo $character->id; ?>" class="btn btn-primary">View</a>
 					</td>
 				</tr>
 				<?php endforeach; ?>

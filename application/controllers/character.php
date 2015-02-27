@@ -20,11 +20,70 @@ class Character extends CI_Controller {
 		));
 	}
 
+	public function add_power($character_id, $power_id) {
+
+		$character_id = (int) $character_id;
+		$power_id = (int) $power_id;
+
+		$this->load->model(array('Model_Power'));
+		$this->Model_Power->addToCharacter($character_id, $power_id);
+
+		redirect('/character/powers/'.$character_id);
+	}
+
+	public function remove_power($character_id, $power_id) {
+
+		$character_id = (int) $character_id;
+		$power_id = (int) $power_id;
+
+		$this->load->model(array('Model_Power'));
+		$this->Model_Power->removeFromCharacter($character_id, $power_id);
+
+		redirect('/character/powers/'.$character_id);
+	}
+
 	public function powers($character_id) {
 
 		$character_id = (int) $character_id;
 
-		
+		// supporting libs
+		$this->load->model(array(
+			'Model_Character',
+			'Model_Class',
+			'Model_Race',
+			'Model_Power'
+		));
+
+		$data = array(
+			'title' => 'Powers',
+			'character' => $this->Model_Character->getById($character_id)
+		);
+		$data['powers'] = $this->Model_Power->getByClassAndCharacterId($data['character']->class, $data['character']->id);
+
+		// render the page
+		$this->load->view('view_page', array(
+			'content' => $this->load->view('view_powers', $data, true),
+		));
+	}
+
+	public function view($character_id) {
+
+		$character_id = (int) $character_id;
+
+		$this->load->model(array(
+			'Model_Character',
+			'Model_Power'
+		));
+
+		$data = array(
+			'record' => $this->Model_Character->getById($character_id)
+		);
+		$data['title'] = $data['record']->name;
+
+		// render the page
+		$this->load->view('view_page', array(
+			'content' => $this->load->view('view_character', $data, true),
+		));
 	}
 
 	public function add() {

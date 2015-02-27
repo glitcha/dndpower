@@ -4,7 +4,8 @@
 	<div class="panel-heading">
 		<span><?php echo $title; ?></span>
 		<div class="panel-actions">
-			<a class="btn btn-default" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
+			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
+			<a class="btn btn-primary" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
 		</div>
 	</div>
 	<div class="panel-body">

@@ -42,15 +42,47 @@ class Character extends CI_Controller {
 		redirect('/character/powers/'.$character_id);
 	}
 
+	public function feats($character_id) {
+
+		$character_id = (int) $character_id;
+
+		// supporting libs
+		$this->load->model(array(
+			'Model_Character',			
+			'Model_Feat'
+		));
+
+		// handle posts
+		if (count($_POST) > 0) {
+			$this->Model_Feat->removeAllFeats($character_id);
+			foreach ($_POST as $item => $value) {
+				if (substr($item, 0, 5) == 'feat_') {
+					$raw = explode('_', $item);
+					$feat_id = (int) $raw[1];
+					$this->Model_Feat->addFeat($character_id, $feat_id);
+				}
+			}
+		}
+
+		$data = array(
+			'title' => 'Skills',
+			'character' => $this->Model_Character->getById($character_id)
+		);
+		$data['feats'] = $this->Model_Feat->getWithCharacterId($data['character']->id);
+
+		// render the page
+		$this->load->view('view_page', array(
+			'content' => $this->load->view('view_select_feats', $data, true),
+		));
+	}
+
 	public function powers($character_id) {
 
 		$character_id = (int) $character_id;
 
 		// supporting libs
 		$this->load->model(array(
-			'Model_Character',
-			'Model_Class',
-			'Model_Race',
+			'Model_Character',			
 			'Model_Power'
 		));
 
@@ -62,7 +94,41 @@ class Character extends CI_Controller {
 
 		// render the page
 		$this->load->view('view_page', array(
-			'content' => $this->load->view('view_powers', $data, true),
+			'content' => $this->load->view('view_select_powers', $data, true),
+		));
+	}
+
+	public function skills($character_id) {
+
+		$character_id = (int) $character_id;
+
+		// supporting libs
+		$this->load->model(array(
+			'Model_Character',			
+			'Model_Skill'
+		));
+
+		// handle posts
+		if (count($_POST) > 0) {
+			$this->Model_Skill->removeAllSkills($character_id);
+			foreach ($_POST as $item => $value) {
+				if (substr($item, 0, 6) == 'skill_') {
+					$raw = explode('_', $item);
+					$skill_id = (int) $raw[1];
+					$this->Model_Skill->addSkill($character_id, $skill_id);
+				}
+			}
+		}
+
+		$data = array(
+			'title' => 'Powers',
+			'character' => $this->Model_Character->getById($character_id)
+		);
+		$data['skills'] = $this->Model_Skill->getWithCharacterId($data['character']->id);
+
+		// render the page
+		$this->load->view('view_page', array(
+			'content' => $this->load->view('view_select_skills', $data, true),
 		));
 	}
 
@@ -70,15 +136,32 @@ class Character extends CI_Controller {
 
 		$character_id = (int) $character_id;
 
+		$this->load->library(array(
+			'LibStats'
+		));
 		$this->load->model(array(
 			'Model_Character',
-			'Model_Power'
+			'Model_Power',
+			'Model_Feat',
+			'Model_Skill'
 		));
 
 		$data = array(
 			'record' => $this->Model_Character->getById($character_id)
 		);
 		$data['title'] = $data['record']->name;
+
+		// populate the character with stats
+		$this->libstats->populate($data['record']);
+
+		// populate the powers
+		$data['powers'] = $this->load->view('view_powers', array('powers' => $this->Model_Power->getByCharacterId($character_id)), true);
+
+		// populate the feats
+		$data['feats'] = $this->load->view('view_feats', array('feats' => $this->Model_Feat->getByCharacterId($character_id)), true);
+
+		// populate the skills
+		$data['skills'] = $this->load->view('view_skills', array('skills' => $this->libstats->loadSkillBonuses($this->Model_Skill->getWithCharacterId($character_id), $data['record'])), true);
 
 		// render the page
 		$this->load->view('view_page', array(

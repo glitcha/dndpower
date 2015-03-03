@@ -1,0 +1,35 @@
+.power-select { 
+	margin-bottom: 15px;
+}
+
+.power {
+	padding: 5px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+}
+	.power .rules {
+		font-weight: 600;
+		padding: 5px 0;
+	}
+	.power .description {
+		font-style: italic;
+		padding: 5px 0;
+	}
+	.power .row {
+		margin: 0;
+	}
+
+.power.green .heading {
+	color: #FFFFFF;
+	background-color: #498600;
+}
+
+.power.red .heading {
+	color: #FFFFFF;
+	background-color: #9B0000;
+}
+
+.power.black .heading {
+	color: #ffffff;
+	background-color: #666666;
+}

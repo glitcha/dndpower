@@ -31,4 +31,17 @@ class Model_Power extends MY_Model {
 	public function addToCharacter($character_id, $power_id) {
 		$this->db->query('INSERT INTO character_power (character_id, power_id) VALUES (?,?);', array($character_id, $power_id));
 	}
+
+	public function getByCharacterId($character_id) {
+
+		return $this->db->query('
+			SELECT p.*, cp.id AS cp_id 
+			FROM power p
+			INNER JOIN character_power cp ON 
+				cp.power_id = p.id 
+			WHERE 
+				cp.character_id = ? 
+			ORDER BY 
+				`level` ASC', array($character_id))->result();	
+	}
 }

@@ -6,6 +6,11 @@
 		<div class="panel-actions">
 			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
 			<a class="btn btn-primary" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
+			<?php if (isset($record->id)):?>
+			<a class="btn btn-primary" href="/character/powers/<?php echo $record->id; ?>">Powers</a>
+			<a class="btn btn-primary" href="/character/skills/<?php echo $record->id; ?>">Skills</a>
+			<a class="btn btn-primary" href="/character/feats/<?php echo $record->id; ?>">Feats</a>
+			<?php endif;?>
 		</div>
 	</div>
 	<div class="panel-body">
@@ -91,7 +96,7 @@
 			</div>
 		</div>
 		<div class="form-group fieldRequired row">
-			<label class="col-md-2">Fortitude</label>
+			<label class="col-md-2">Fortitude Bonus</label>
 			<div class="col-sm-10">
 				<div class="row">
 					<input type="text" name="fortitude_bonus" placeholder="" class="two form-control" value="<?php echo $record->fortitude_bonus;?>"/>					
@@ -99,7 +104,7 @@
 			</div>
 		</div>
 		<div class="form-group fieldRequired row">
-			<label class="col-md-2">Reflex</label>
+			<label class="col-md-2">Reflex Bonus</label>
 			<div class="col-sm-10">
 				<div class="row">
 					<input type="text" name="reflex_bonus" placeholder="" class="two form-control" value="<?php echo $record->reflex_bonus;?>"/>					
@@ -107,7 +112,7 @@
 			</div>
 		</div>
 		<div class="form-group fieldRequired row">
-			<label class="col-md-2">Will Power</label>
+			<label class="col-md-2">Will Power Bonus</label>
 			<div class="col-sm-10">
 				<div class="row">
 					<input type="text" name="will_bonus" placeholder="" class="two form-control" value="<?php echo $record->will_bonus;?>"/>					

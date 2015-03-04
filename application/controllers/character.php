@@ -245,6 +245,15 @@ class Character extends CI_Controller {
 			// populate the model
 			$this->libpopulate->autoFromPost($this->Model_Character, $fields);
 
+			if(count($_FILES) > 0 && $_FILES['image']['name'] != '') {
+				
+				$image = $this->uploadImage('image', $image_errors);
+				if(count($image_errors) == 0) {
+					$this->Model_Character->image = $image['upload_data']['file_name'];
+				}
+				$data['image_errors'] = $image_errors;
+			}
+
 			// save the model
 			$this->Model_Character->id = $id;
 			$this->Model_Character->update();
@@ -254,6 +263,31 @@ class Character extends CI_Controller {
 		$this->load->view('view_page', array(
 			'content' => $this->load->view('view_form_character', $data, true),
 		));
+	}
+
+	public function uploadImage($filename, &$errors) {
+		
+		$out = array();
+				
+		$install_path = $this->libglobal->install_path();
+
+		$client_images_path = $install_path.'files/images';
+				
+		$config['upload_path'] = $client_images_path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '4048';
+		$config['max_width']  = '1924';
+		$config['max_height']  = '1968';
+		
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload($filename)) {
+			$errors = array('error' => $this->upload->display_errors());
+		} else {
+			$out = array('upload_data' => $this->upload->data());
+		}
+		
+		return $out;
 	}
 
 	public function getFields() {
@@ -269,6 +303,7 @@ class Character extends CI_Controller {
 			'fortitude_bonus' => 'int',
 			'reflex_bonus' => 'int',
 			'will_bonus' => 'int',
+			'ac_bonus' => 'int',
 			'hp' => 'int',
 			'race' => 'string',
 			'class' => 'string'

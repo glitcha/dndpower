@@ -15,13 +15,22 @@ class Model_Power extends MY_Model {
 
 	public function getByClassAndCharacterId($class, $character_id) {
 
+		$class = $this->db->escape($class);
+		$classes = array($class);
+
+		if ($class == "'Warlock (Infernal)'")
+			$classes[] = "'Warlock (All)'";
+
+		$classes_str = implode(',', $classes);
+		
+
 		return $this->db->query('
 			SELECT p.*, cp.id AS cp_id FROM power p
 			LEFT JOIN character_power cp ON 
 				cp.power_id = p.id AND
 				cp.character_id = ?
 			WHERE 
-				super_type = ? ORDER BY `level` ASC', array($character_id, $class))->result();	
+				super_type IN ('.$classes_str.') ORDER BY `level` ASC', array($character_id, $class))->result();	
 	}
 
 	public function removeFromCharacter($character_id, $power_id) {

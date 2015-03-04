@@ -22,5 +22,11 @@ function bug() {
 }
 
 class LibGlobal {
-	
+
+	public function install_path() {
+		
+		$path = dirname(__FILE__);
+		$path = str_replace('application/libraries', '', $path);
+		return $path;
+	}
 }

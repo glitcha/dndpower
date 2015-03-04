@@ -65,6 +65,27 @@ class LibStats extends LibAbstract {
 		return $out;
 	}
 
+	public function getAC($character) {
+
+		$out = array(
+			'working' => array(),
+			'total' => 0,
+			'description' => ''
+		);
+
+		$attr = ($character->dex > $character->int) ? 'dex' : 'int';
+
+		$out['working'][] = $this->addWorking('10', 10);
+		$out['working'][] = $this->addWorking('1/2 Lvl', $this->getHalfLevel($character));
+		$out['working'][] = $this->addWorking($attr, $this->getAbilityModifier($character->$attr));
+		$out['working'][] = $this->addWorking('Misc', $character->ac_bonus);
+
+		$out['total'] = $out['working'][0]['value'] + $out['working'][1]['value'] + $out['working'][2]['value'];
+		$out['description'] = $this->concatDescription($out['working']);
+
+		return $out;
+	}
+
 	private function concatDescription($working) {
 
 		$out = ' = ';
@@ -103,6 +124,7 @@ class LibStats extends LibAbstract {
 		$character->reflex = $this->getReflex($character);
 		$character->fortitude = $this->getFortitude($character);
 		$character->will = $this->getWill($character);
+		$character->ac = $this->getAC($character);
 		$character->str_bonus = $this->getAbilityModifier($character->str);
 		$character->con_bonus = $this->getAbilityModifier($character->con);
 		$character->dex_bonus = $this->getAbilityModifier($character->dex);

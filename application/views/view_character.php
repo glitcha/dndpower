@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<span><?php echo $title; ?></span>
+		<h1><?php echo $title; ?></h1>
 		<div class="panel-actions">
 			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
 		</div>
@@ -12,6 +12,11 @@
 		<div>
 			<label class="col-md-2">Name</label>
 			<label name="name"><?php echo $record->name;?></label>	
+		</div>
+		<div>
+			<?php if ($record->image != ''): ?>
+			<img src="/files/images/<?php echo $record->image;?>" width="300px"/>
+			<?php endif; ?>
 		</div>
 		<div>
 			<label class="col-md-2">Race</label>
@@ -28,32 +33,32 @@
 		<div>	
 			<label class="col-md-2">STR</label>
 			<label name="str"><?php echo $record->str;?></label>	
-			<label name="att-bonus"><?php echo $record->str_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->str_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">CON</label>
 			<label name="con"><?php echo $record->con;?></label>	
-			<label name="att-bonus"><?php echo $record->con_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->con_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">DEX</label>
 			<label name="dex"><?php echo $record->dex;?></label>	
-			<label name="att-bonus"><?php echo $record->dex_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->dex_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">INT</label>
 			<label name="int"><?php echo $record->int;?></label>	
-			<label name="att-bonus"><?php echo $record->int_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->int_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">WIS</label>
 			<label name="wis"><?php echo $record->wis;?></label>	
-			<label name="att-bonus"><?php echo $record->wis_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->wis_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">CHA</label>
 			<label name="cha"><?php echo $record->cha;?></label>	
-			<label name="att-bonus"><?php echo $record->cha_bonus;?></label>
+			<label name="att-bonus">(<?php echo $record->cha_bonus;?>)</label>
 		</div>
 		<div>	
 			<label class="col-md-2">Fortitude</label>
@@ -69,6 +74,11 @@
 			<label class="col-md-2">Will Power</label>
 			<label name="will"><?php echo $record->will['total'];?></label>	
 			<label name="will_working"><?php echo $record->will['description'];?></label>	
+		</div>
+		<div>	
+			<label class="col-md-2">AC</label>
+			<label name="ac"><?php echo $record->ac['total'];?></label>	
+			<label name="ac_working"><?php echo $record->ac['description'];?></label>	
 		</div>
 		<div>	
 			<label class="col-md-2">Hit Points</label>

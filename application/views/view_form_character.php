@@ -1,12 +1,13 @@
-<form id="form-character" method="post" action="<?php echo $action;?>"
+<form id="form-character" method="post" action="<?php echo $action;?>" enctype="multipart/form-data">
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<span><?php echo $title; ?></span>
+		<h1><?php echo $title; ?></h1>
 		<div class="panel-actions">
 			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
 			<a class="btn btn-primary" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
 			<?php if (isset($record->id)):?>
+			<a class="btn btn-primary" href="/character/view/<?php echo $record->id; ?>">View</a>
 			<a class="btn btn-primary" href="/character/powers/<?php echo $record->id; ?>">Powers</a>
 			<a class="btn btn-primary" href="/character/skills/<?php echo $record->id; ?>">Skills</a>
 			<a class="btn btn-primary" href="/character/feats/<?php echo $record->id; ?>">Feats</a>
@@ -19,10 +20,20 @@
 			<label class="col-md-2">Name</label>
 			<div class="col-sm-10">
 				<div class="row">
-					<input type="text" name="name" placeholder="" class="two form-control" value="<?php echo $record->name;?>"/>					
+					<input type="text" name="name" placeholder="" class="two form-control" value="<?php echo $record->name;?>"/>				
 				</div>
 			</div>
 		</div>
+		<?php if (isset($record->id)):?>
+		<div class="form-group fieldRequired row">
+			<label class="col-md-2">Image</label>
+			<div class="col-sm-10">
+				<div class="row">
+					<input type="file" id="image" name="image"/>					
+				</div>
+			</div>
+		</div>
+		<?php endif;?>
 		<div class="form-group fieldRequired row">
 			<label class="col-md-2">Race</label>
 			<div class="col-sm-10">
@@ -116,6 +127,14 @@
 			<div class="col-sm-10">
 				<div class="row">
 					<input type="text" name="will_bonus" placeholder="" class="two form-control" value="<?php echo $record->will_bonus;?>"/>					
+				</div>
+			</div>
+		</div>
+		<div class="form-group fieldRequired row">
+			<label class="col-md-2">AC Bonus</label>
+			<div class="col-sm-10">
+				<div class="row">
+					<input type="text" name="ac_bonus" placeholder="" class="two form-control" value="<?php echo $record->ac_bonus;?>"/>					
 				</div>
 			</div>
 		</div>

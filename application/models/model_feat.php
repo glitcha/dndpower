@@ -14,6 +14,8 @@ class Model_Feat extends MY_Model {
 			LEFT JOIN character_feat cf ON 
 				cf.feat_id = f.id AND
 				cf.character_id = ?
+			ORDER BY
+				f.type ASC, f.title
 			', array($character_id))->result();	
 	}
 
@@ -28,6 +30,8 @@ class Model_Feat extends MY_Model {
 				cf.feat_id = f.id 
 			WHERE
 				cf.character_id = ?
+			ORDER BY
+				f.type ASC, f.title
 			', array($character_id))->result();
 	}
 

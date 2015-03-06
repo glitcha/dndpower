@@ -97,4 +97,8 @@
 		<h2>Powers</h2>
 		<?php echo $powers;?>
 	</div>
+	<div class="panel-body">
+		<h2>Extra</h2>
+		<?php echo $extras;?>
+	</div>
 </div>

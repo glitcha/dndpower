@@ -4,13 +4,14 @@
 	<div class="panel-heading">
 		<h1><?php echo $title; ?></h1>
 		<div class="panel-actions">
-			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
-			<a class="btn btn-primary" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
+			<a class="btn btn-warning" href="/character/browse" class="buttonH bGreen">Back</a>
+			<a class="btn btn-success" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>
 			<?php if (isset($record->id)):?>
 			<a class="btn btn-primary" href="/character/view/<?php echo $record->id; ?>">View</a>
 			<a class="btn btn-primary" href="/character/powers/<?php echo $record->id; ?>">Powers</a>
 			<a class="btn btn-primary" href="/character/skills/<?php echo $record->id; ?>">Skills</a>
 			<a class="btn btn-primary" href="/character/feats/<?php echo $record->id; ?>">Feats</a>
+			<a class="btn btn-primary" href="/character/extras/<?php echo $record->id; ?>">Extras</a>
 			<?php endif;?>
 		</div>
 	</div>

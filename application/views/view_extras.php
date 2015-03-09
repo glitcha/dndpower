@@ -4,7 +4,7 @@
 	<img src="/files/images/<?php echo $extra->image;?>"/>
 	<?php endif; ?>
 	<div>
-		<?php echo $extra->note; ?>
+		<?php echo nl2br($extra->note); ?>
 	</div>
 </div>
 <?php endforeach; ?>

@@ -121,9 +121,7 @@ class Extra extends CI_Controller {
 		$extra = $this->Model_Extra->getById($extra_id);
 		
 		if($this->input->post('delete_request') == 'true') {
-					
 			$this->Model_Extra->delete($extra_id);
-			
 			redirect('/character/extras/'.$extra->character_id);
 		}
 	

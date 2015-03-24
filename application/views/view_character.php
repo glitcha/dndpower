@@ -39,42 +39,42 @@
 						<label class="col-sm-4 control-label">STR</label>
 						<div class="col-sm-6">
 							<label name="str" class="form-control-static"><?php echo $record->str;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->str_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->str_bonus;?>)</label>
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">CON</label>
 						<div class="col-sm-6">
 							<label name="con" class="form-control-static"> <?php echo $record->con;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->con_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->con_bonus;?>)</label>
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">DEX</label>
 						<div class="col-sm-6">
 							<label name="dex" class="form-control-static"><?php echo $record->dex;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->dex_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->dex_bonus;?>)</label>
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">INT</label>
 						<div class="col-sm-6">
 							<label name="int" class="form-control-static"><?php echo $record->int;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->int_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->int_bonus;?>)</label>
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">WIS</label>
 						<div class="col-sm-6">
 							<label name="wis" class="form-control-static"><?php echo $record->wis;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->wis_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->wis_bonus;?>)</label>
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">CHA</label>
 						<div class="col-sm-6">
 							<label name="cha" class="form-control-static"><?php echo $record->cha;?></label>	
-							<label name="att-bonus" class="form-control-static">(<?php echo $record->cha_bonus;?>)</label>
+							<label name="att-bonus" class="bonus form-control-static">(<?php echo $record->cha_bonus;?>)</label>
 						</div>
 					</div>
 					<hr/>
@@ -82,28 +82,28 @@
 						<label class="col-sm-4 control-label">Fortitude</label>
 						<div class="col-sm-6">
 							<label name="fortitude" class="form-control-static"><?php echo $record->fortitude['total'];?></label>	
-							<label name="fortitude" class="form-control-static"><?php echo $record->fortitude['description'];?></label>	
+							<label name="fortitude_working" class="working form-control-static"><?php echo $record->fortitude['description'];?></label>	
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">Reflex</label>
 						<div class="col-sm-6">
 							<label name="reflex" class="form-control-static"><?php echo $record->reflex['total'];?></label>	
-							<label name="reflex" class="form-control-static"><?php echo $record->reflex['description'];?></label>	
+							<label name="reflex_working" class="working form-control-static"><?php echo $record->reflex['description'];?></label>	
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">Will Power</label>
 						<div class="col-sm-6">
 							<label name="will" class="form-control-static"><?php echo $record->will['total'];?></label>	
-							<label name="will_working" class="form-control-static"><?php echo $record->will['description'];?></label>	
+							<label name="will_working" class="working form-control-static"><?php echo $record->will['description'];?></label>	
 						</div>
 					</div>
 					<div class="form-group">	
 						<label class="col-sm-4 control-label">AC</label>
 						<div class="col-sm-6">
 							<label name="ac" class="form-control-static"><?php echo $record->ac['total'];?></label>	
-							<label name="ac_working" class="form-control-static"><?php echo $record->ac['description'];?></label>	
+							<label name="ac_working" class="working form-control-static"><?php echo $record->ac['description'];?></label>	
 						</div>
 					</div>
 					<hr/>

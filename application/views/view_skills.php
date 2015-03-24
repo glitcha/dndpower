@@ -16,7 +16,7 @@
 					<td><?php if ($skill->cs_id !== null) { echo 'Yes'; }?></td>
 					<td><?php echo $skill->attribute; ?></td>
 					<td>
-						<?php echo $skill->bonus; ?>
+						<span class="bonus">(<?php echo $skill->bonus; ?>)</span>
 					</td>
 				</tr>
 				<?php endforeach; ?>

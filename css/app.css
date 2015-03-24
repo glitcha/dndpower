@@ -33,3 +33,14 @@
 	color: #ffffff;
 	background-color: #666666;
 }
+
+.bonus {
+	color: rgb(53, 160, 0);
+	font-weight: 900;
+}
+
+.working {
+	color: grey;
+	font-weight: 100;
+	font-size: 13px;
+}

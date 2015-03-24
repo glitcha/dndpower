@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h1><?php echo $title; ?></h1>
+		<span><?php echo $title; ?></span>
 		<div class="panel-actions">
 			<a class="btn btn-warning" href="/character/browse" class="buttonH bGreen">Back</a>
 			<a class="btn btn-success" href="#" onclick="$('#form-character').submit();return false;" class="buttonH bGreen">Save</a>

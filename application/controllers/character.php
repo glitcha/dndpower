@@ -5,9 +5,7 @@ class Character extends CI_Controller {
 	public function browse() {
 		
 		// supporting libs
-		$this->load->model(array(
-			'Model_Character'			
-		));
+		$this->load->model(array('Model_Character'));
 
 		$data = array(
 			'title' => 'Characters',
@@ -18,6 +16,17 @@ class Character extends CI_Controller {
 		$this->load->view('view_page', array(
 			'content' => $this->load->view('view_character_browse', $data, true),
 		));
+	}
+
+	public function ajax_hp_current($character_id, $hit_points) {
+
+		$character_id = (int) $character_id;
+		$hit_points = (int) $hit_points;
+
+		$this->load->model(array('Model_Character'));
+		$this->Model_Character->load($character_id);
+		$this->Model_Character->hp_current = $hit_points;
+		$this->Model_Character->update();
 	}
 
 	public function add_power($character_id, $power_id) {
@@ -65,7 +74,7 @@ class Character extends CI_Controller {
 		}
 
 		$data = array(
-			'title' => 'Skills',
+			'title' => 'Feats',
 			'character' => $this->Model_Character->getById($character_id)
 		);
 		$data['feats'] = $this->Model_Feat->getWithCharacterId($data['character']->id);
@@ -121,7 +130,7 @@ class Character extends CI_Controller {
 		}
 
 		$data = array(
-			'title' => 'Powers',
+			'title' => 'Skills',
 			'character' => $this->Model_Character->getById($character_id)
 		);
 		$data['skills'] = $this->Model_Skill->getWithCharacterId($data['character']->id);
@@ -170,8 +179,17 @@ class Character extends CI_Controller {
 			'Model_Extra'
 		));
 
+		// handle posts
+		if (count($_POST) > 0) {
+			$this->Model_Character->load($character_id);
+			$this->Model_Character->hp_current = $this->input->post('hp_current');
+			$this->Model_Character->gold = $this->input->post('gold');
+			$this->Model_Character->update();
+		}
+
 		$data = array(
-			'record' => $this->Model_Character->getById($character_id)
+			'record' => $this->Model_Character->getById($character_id),
+			'scripts' => array('/js/dnd/character.js'),
 		);
 		$data['title'] = $data['record']->name;
 

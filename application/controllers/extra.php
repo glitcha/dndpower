@@ -14,6 +14,7 @@ class Extra extends CI_Controller {
 
 		$data = array(
 			'title' => 'Characters',
+			'character' => $this->Model_Character->getById($character_id),
 			'characters' => $this->Model_Character->getAll(),
 			'action' => '/extra/add/'.$character_id,
 			'record' => new stdClass(),
@@ -74,6 +75,7 @@ class Extra extends CI_Controller {
 		);
 		$data['action'] = '/extra/edit/'.$data['record']->id;
 		$data['character_id'] = $data['record']->character_id;
+		$data['character'] = $this->Model_Character->getById($character_id);
 
 		$fields = $this->getFields();
 

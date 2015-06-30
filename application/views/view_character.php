@@ -1,20 +1,129 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<span><?php echo $title; ?></span>
-		<div class="panel-actions">
-			<a class="btn btn-primary" href="/character/browse" class="buttonH bGreen">Back</a>
-			<a class="btn btn-success" href="#" onclick="$('#form-character-view').submit();return false;" class="buttonH bGreen">Save</a>
+<div class="navbar navbar-static-top affix" role="navigation" data-spy="affix" data-offset-top="1" data-offset-bottom="0">
+	<div class="container home">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<button type="button" class="btn btn-primary" id="quick-attr">Attr</button>
+			<a class="navbar-brand" href="/cms/page/default">
+				<span>D&D 4th</span>
+			</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav home">
+				<li><a href="/character/browse">View Characters</a></li>
+				<li><a href="/character/edit/<?php echo $record->id; ?>">Edit Character</a></li>
+			</ul>
 		</div>
 	</div>
+</div>
+
+<div id="quick-attr-content" class="hidden">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Attr</th>
+				<th>Stat</th>
+				<th>Bonus</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>STR</td>
+				<td><?php echo $record->str;?></td>
+				<td><?php echo $record->str_bonus;?></td>
+			</tr>
+			<tr>
+				<td>CON</td>
+				<td><?php echo $record->con;?></td>
+				<td><?php echo $record->con_bonus;?></td>
+			</tr>
+			<tr>
+				<td>DEX</td>
+				<td><?php echo $record->dex;?></td>
+				<td><?php echo $record->dex_bonus;?></td>
+			</tr>
+			<tr>
+				<td>INT</td>
+				<td><?php echo $record->int;?></td>
+				<td><?php echo $record->int_bonus;?></td>
+			</tr>
+			<tr>
+				<td>WIS</td>
+				<td><?php echo $record->wis;?></td>
+				<td><?php echo $record->wis_bonus;?></td>
+			</tr>
+			<tr>
+				<td>CHA</td>
+				<td><?php echo $record->cha;?></td>
+				<td><?php echo $record->cha_bonus;?></td>
+			</tr>
+			<tr>
+				<td>Fortitude</td>
+				<td><?php echo $record->fortitude['total'];?></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Reflex</td>
+				<td><?php echo $record->reflex['total'];?></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Will Power</td>
+				<td><?php echo $record->will['total'];?></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>AC</td>
+				<td><?php echo $record->ac['total'];?></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+<!-- 					<div class="form-group">
+						<label class="col-sm-4 control-label">Fortitude</label>
+						<div class="col-sm-6">
+							<label name="fortitude" class="form-control-static"><?php echo $record->fortitude['total'];?></label>
+							<label name="fortitude_working" class="working form-control-static"><?php echo $record->fortitude['description'];?></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Reflex</label>
+						<div class="col-sm-6">
+							<label name="reflex" class="form-control-static"><?php echo $record->reflex['total'];?></label>
+							<label name="reflex_working" class="working form-control-static"><?php echo $record->reflex['description'];?></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Will Power</label>
+						<div class="col-sm-6">
+							<label name="will" class="form-control-static"><?php echo $record->will['total'];?></label>
+							<label name="will_working" class="working form-control-static"><?php echo $record->will['description'];?></label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">AC</label>
+						<div class="col-sm-6">
+							<label name="ac" class="form-control-static"><?php echo $record->ac['total'];?></label>
+							<label name="ac_working" class="working form-control-static"><?php echo $record->ac['description'];?></label>
+						</div>
+					</div> -->
+</div>
+
+<div class="panel panel-default">
 	<div class="panel-body">
 		<div>
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
-				<li role="presentation"><a href="#attributes" aria-controls="attributes" role="tab" data-toggle="tab">Attributes</a></li>
-				<li role="presentation"><a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a></li>
-				<li role="presentation"><a href="#tracking" aria-controls="tracking" role="tab" data-toggle="tab">Tracking</a></li>
+				<li role="presentation"><a href="#attributes" aria-controls="attributes" role="tab" data-toggle="tab">Attr</a></li>
+				<li role="presentation"><a href="#tracking" aria-controls="tracking" role="tab" data-toggle="tab">HP</a></li>
 				<li role="presentation"><a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a></li>
 				<li role="presentation"><a href="#feats" aria-controls="feats" role="tab" data-toggle="tab">Feats</a></li>
 				<li role="presentation"><a href="#powers" aria-controls="powers" role="tab" data-toggle="tab">Powers</a></li>
@@ -25,11 +134,6 @@
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="details">
 					<div class="">
-						<div>
-							<?php if ($record->image != ''): ?>
-							<img src="/files/images/<?php echo $record->image;?>" width="300px"/>
-							<?php endif; ?>
-						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Name</label>
 							<div class="col-sm-6">
@@ -53,6 +157,11 @@
 							<div class="col-sm-6">
 								<label name="level" class="form-control-static"><?php echo $record->level;?></label>
 							</div>
+						</div>
+						<div>
+							<?php if ($record->image != ''): ?>
+							<img src="/files/images/<?php echo $record->image;?>" width="300px"/>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -157,6 +266,12 @@
 										<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
 									</span>
 								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label"> </label>
+							<div class="col-sm-6">
+								<button class="btn btn-primary" type="submit">Save</button>
 							</div>
 						</div>
 					</form>

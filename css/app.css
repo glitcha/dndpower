@@ -1,4 +1,4 @@
-.power-select { 
+.power-select {
 	margin-bottom: 15px;
 }
 
@@ -37,6 +37,10 @@
 .bonus {
 	color: rgb(53, 160, 0);
 	font-weight: 900;
+}
+
+.light {
+	color: #A0A0A0;
 }
 
 .working {

@@ -8,7 +8,7 @@ class Extra extends CI_Controller {
 
 		// supporting libs
 		$this->load->model(array(
-			'Model_Character',			
+			'Model_Character',
 			'Model_Extra'
 		));
 
@@ -38,7 +38,7 @@ class Extra extends CI_Controller {
 
 			// handle the image upload
 			if(count($_FILES) > 0 && $_FILES['image']['name'] != '') {
-				
+
 				$image = $this->uploadImage('image', $image_errors);
 
 				if(count($image_errors) == 0) {
@@ -65,7 +65,7 @@ class Extra extends CI_Controller {
 
 		// supporting libs
 		$this->load->model(array(
-			'Model_Character',			
+			'Model_Character',
 			'Model_Extra'
 		));
 
@@ -75,7 +75,7 @@ class Extra extends CI_Controller {
 		);
 		$data['action'] = '/extra/edit/'.$data['record']->id;
 		$data['character_id'] = $data['record']->character_id;
-		$data['character'] = $this->Model_Character->getById($character_id);
+		$data['character'] = $this->Model_Character->getById($data['character_id']);
 
 		$fields = $this->getFields();
 
@@ -90,10 +90,10 @@ class Extra extends CI_Controller {
 			// populate and save the model
 			$this->Model_Extra->id = $extra_id;
 			$this->libpopulate->autoFromPost($this->Model_Extra, $fields);
-			
+
 			// handle the image upload
 			if(count($_FILES) > 0 && $_FILES['image']['name'] != '') {
-				
+
 				$image = $this->uploadImage('image', $image_errors);
 
 				if(count($image_errors) == 0) {
@@ -107,7 +107,7 @@ class Extra extends CI_Controller {
 			// redirect
 			redirect('/extra/edit/'.$this->Model_Extra->id);
 		}
-
+		
 		// render the page
 		$this->load->view('view_page', array(
 			'content' => $this->load->view('view_form_extra', $data, true),
@@ -118,39 +118,39 @@ class Extra extends CI_Controller {
 
 		$data = array();
 
-		$this->load->model('Model_Extra');	
+		$this->load->model('Model_Extra');
 
 		$extra = $this->Model_Extra->getById($extra_id);
-		
+
 		if($this->input->post('delete_request') == 'true') {
 			$this->Model_Extra->delete($extra_id);
 			redirect('/character/extras/'.$extra->character_id);
 		}
-	
+
 		$data['post_link'] = '/extra/delete/'.$extra_id;
 		$data['cancel_link'] = '/character/extras/'.$extra->character_id;
-		
+
 		// render the page
 		$this->load->view('view_page', array(
 			'content' => $this->load->view('view_delete', $data, true),
 		));
-				
+
 	}
-	
+
 	public function uploadImage($filename, &$errors) {
-		
+
 		$out = array();
-				
+
 		$install_path = $this->libglobal->install_path();
 
 		$client_images_path = $install_path.'files/images';
-				
+
 		$config['upload_path'] = $client_images_path;
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '4048';
 		$config['max_width']  = '1924';
 		$config['max_height']  = '1968';
-		
+
 		$this->load->library('upload', $config);
 
 		if (!$this->upload->do_upload($filename)) {
@@ -158,7 +158,7 @@ class Extra extends CI_Controller {
 		} else {
 			$out = array('upload_data' => $this->upload->data());
 		}
-		
+
 		return $out;
 	}
 

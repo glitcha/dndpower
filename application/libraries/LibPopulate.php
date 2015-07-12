@@ -21,7 +21,7 @@ class LibPopulate extends LibAbstract {
 	}
 
 	public function autoFromPost(&$object, $fieldlist) {
-		
+
 		foreach ($fieldlist as $field_name => $field_type) {
 
 			$value = null;
@@ -70,7 +70,7 @@ class LibPopulate extends LibAbstract {
 	}
 
 	private function setVal(&$object, $field, $value) {
-		
+
 		if (is_array($object)) {
 			$this->setArrayVal($object, $field, $value);
 		} else {
@@ -128,48 +128,48 @@ class LibPopulate extends LibAbstract {
 	}
 
 	public function populateArrayFromPost(&$array, $fieldlist) {
-				
+
 		foreach ($fieldlist as $field) {
 			$array[$field] = $this->ci->input->post($field);
 		}
 	}
 
 	public function populateArrayFromPostInts(&$array, $fieldlist) {
-				
+
 		foreach ($fieldlist as $field) {
 			$array[$field] = (int) $this->ci->input->post($field);
 		}
 	}
 
 	public function populateObjectFromPost(&$object, $fieldlist) {
-				
+
 		foreach ($fieldlist as $field) {
 			$object->$field = $this->ci->input->post($field);
 		}
 	}
 
 	public function populateArrayFromObject(&$array, $source, $fieldlist) {
-				
+
 		foreach ($fieldlist as $field) {
 			$array[$field] = $source->$field;
 		}
 	}
-	
+
 	public function populateArrayWithBlank(&$array, $fieldlist) {
-		
+
 		foreach ($fieldlist as $field) {
 			$array[$field] = '';
 		}
-		
-		return $array;		
+
+		return $array;
 	}
 
 	public function populateObjectWithBlank(&$object, $fieldlist) {
-		
+
 		foreach ($fieldlist as $field) {
 			$object->$field = '';
 		}
-		
+
 		return $object;
 	}
 
@@ -179,19 +179,19 @@ class LibPopulate extends LibAbstract {
 			$destination->$item = $value;
 		}
 	}
-		
+
 	public function populateArrayWithModel($model) {
-	
+
 		$array = array();
-		
+
 		foreach ($this->ci->$model as $field => $value) {
-		
+
 			if ($value == '0000-00-00 00:00:00') {
 				$value = '';
 			}
 			$array[$field] = $value;
 		}
-		
+
 		return $array;
 	}
 
@@ -221,26 +221,26 @@ class LibPopulate extends LibAbstract {
 				$target->$field = $source->$field;
 			}
 		}
-	}	
-	
+	}
+
 	public function resultToDropDownData($results, $id_field, $title_field, $title_field2 = '', $no_value_title = null) {
-		
+
 		$out = array();
-		
+
 		if ($no_value_title != null) {
 			$out[''] = $no_value_title;
 		}
-		
+
 		foreach($results as $row) {
 			$title = ($title_field2 == '') ? $row->$title_field : $row->$title_field.' '.$row->$title_field2;
 			$out[$row->$id_field] = $title;
 		}
-		
+
 		return $out;
 	}
 
 	public function objectArrayFieldToArray($data, $field) {
-		
+
 		$out = array();
 
 		foreach ($data as $row) {
@@ -249,5 +249,5 @@ class LibPopulate extends LibAbstract {
 
 		return $out;
 	}
-	
+
 }

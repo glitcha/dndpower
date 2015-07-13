@@ -2,3 +2,7 @@
 main {
     padding: 80px 0;
 }
+
+.panel-default>.panel-heading {
+	background-color: #303030;
+}

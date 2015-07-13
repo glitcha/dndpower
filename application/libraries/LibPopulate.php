@@ -21,32 +21,32 @@ class LibPopulate extends LibAbstract {
 	}
 
 	public function autoFromPost(&$object, $fieldlist) {
-
-		foreach ($fieldlist as $field_name => $field_type) {
+		var_dump($fieldlist);
+		foreach ($fieldlist as $field_index => $field) {
 
 			$value = null;
 
-			if (isset($_POST[$field_name])) {
-				$value = $this->ci->input->post($field_name);
-			}
+			if (isset($_POST[$field['name']])) 
+				$value = $this->ci->input->post($field['name']);
 
-			switch ($field_type) {
+			switch ($field['type']) {
 				case 'string':
-					$this->setVal($object, $field_name, $value);
+
+					$this->setVal($object, $field['name'], $value);
 					break;
 				case 'bool':
 					$val = ($value == 'on' || $value === true || $value == 1) ? 1 : 0;
-					$this->setVal($object, $field_name, $val);
+					$this->setVal($object, $field['name'], $val);
 					break;
 				case 'int':
-					$this->setVal($object, $field_name, $this->intForNull($value));
+					$this->setVal($object, $field['name'], $this->intForNull($value));
 					break;
 				case 'date':
 					$val = ($value == '') ? null : $value;
-					$this->setVal($object, $field_name, $val);
+					$this->setVal($object, $field['name'], $val);
 					break;
 				case 'float':
-					$this->setVal($object, $field_name, $this->floatForNull($value));
+					$this->setVal($object, $field['name'], $this->floatForNull($value));
 					break;
 			}
 		}
@@ -165,9 +165,10 @@ class LibPopulate extends LibAbstract {
 	}
 
 	public function populateObjectWithBlank(&$object, $fieldlist) {
-
+		
 		foreach ($fieldlist as $field) {
-			$object->$field = '';
+			$field_name = $field['name'];
+			$object->$field_name = '';
 		}
 
 		return $object;

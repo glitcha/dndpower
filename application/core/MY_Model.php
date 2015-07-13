@@ -8,5 +8,7 @@ class MY_Model extends CI_Model {
         parent::__construct();
     }
 
-    
+    public function getAll() {
+    	return $this->db->get($this->table_name)->result();
+    }
 }
